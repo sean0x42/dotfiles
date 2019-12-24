@@ -10,8 +10,10 @@ Plug 'cespare/vim-toml'                   " Add TOML support
 Plug 'ctrlpvim/ctrlp.vim'                 " Adds Ctrl P fuzzy file finding
 Plug 'elzr/vim-json'                      " Add JSON support
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Conquer of Completion
+Plug 'pangloss/vim-javascript'            " Improve JavaScript indent and syntax
 Plug 'plasticboy/vim-markdown'            " Improved Markdown support
 Plug 'rust-lang/rust.vim'                 " Syntax highlighting, formatting etc. for Rust
+Plug 'scrooloose/nerdtree'                " Add a file browser to the side of the editor
 Plug 'vim-airline/vim-airline'            " Airline UI
 Plug 'vim-airline/vim-airline-themes'     " Themes for Airline
 
@@ -180,6 +182,10 @@ let g:indentLine_setColors = 0
 " Ignore files defined in .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
+" vim-javascript
+" --------------
+let g:javascript_plugin_jsdoc = 1   " Enable syntax highlighting in JSDocs
+
 " vim-markdown
 " ------------
 let g:vim_markdown_frontmatter=1    " Enable YAML frontmatter
@@ -188,6 +194,11 @@ let g:vim_markdown_strikethrough=1  " Enable strikethrough
 " rust.vim
 " --------
 let g:rustfmt_autosave = 1          " Run rustfmt when saving
+
+" nerdtree
+" --------
+" Automatically close Vim if only NERD Tree tab remains
+au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " vim-airline
 " -----------
@@ -211,6 +222,10 @@ let g:mapleader = ','
 " Ctrl U in insert mode deletes a lot. Use Ctrl G u to first break undo,
 " so that you can undo Ctrl U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
+
+" Enable nerd tree
+map <C-n> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 
 " Remove search highlight
 nnoremap <leader><space> :nohlsearch<CR>
