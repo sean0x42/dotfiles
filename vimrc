@@ -4,16 +4,20 @@
 
 call plug#begin(stdpath('data') . '/plugged')
 
+Plug 'MaxMEllon/vim-jsx-pretty'           " Improve JSX syntax highlighting
 Plug 'Yggdroot/indentLine'                " Adds an indent line
 Plug 'ayu-theme/ayu-vim'                  " ayu colour scheme
 Plug 'cespare/vim-toml'                   " Add TOML support
 Plug 'ctrlpvim/ctrlp.vim'                 " Adds Ctrl P fuzzy file finding
 Plug 'elzr/vim-json'                      " Add JSON support
+Plug 'mhinz/vim-sayonara'                 " Sane buffer and window deletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Conquer of Completion
 Plug 'pangloss/vim-javascript'            " Improve JavaScript indent and syntax
 Plug 'plasticboy/vim-markdown'            " Improved Markdown support
+Plug 'prettier/vim-prettier'              " Clean JavaScript code
 Plug 'rust-lang/rust.vim'                 " Syntax highlighting, formatting etc. for Rust
 Plug 'scrooloose/nerdtree'                " Add a file browser to the side of the editor
+Plug 'tpope/vim-commentary'               " Comment out selection
 Plug 'vim-airline/vim-airline'            " Airline UI
 Plug 'vim-airline/vim-airline-themes'     " Themes for Airline
 
@@ -145,6 +149,7 @@ endif
 
 augroup filetypedetect
   au BufNewFile,BufRead .nginx.conf*,nginx.conf* setf nginx
+  au BufNewFile,BufRead *.bailey setf cd19
 augroup END
 
 au BufNewFile,BufRead *.vim setlocal noet ts=4 sw=4 sts=4
@@ -153,6 +158,7 @@ au BufNewFile,BufRead *yml,*.yaml setlocal expandtab ts-2 sw=2
 au BufNewFile,BufRead *.json setlocal expandtab ts=2 sw=2
 
 au FileType nginx setlocal noet ts=4 sw=4 sts=4
+au FileType cd19 setlocal et ts=2 sw=2 sts=2
 
 au FileType fstab,systemd set noexpandtab
 au FileType gitconfig,sh,toml set noexpandtab
@@ -165,6 +171,10 @@ au BufNewFile,BufRead *.py setlocal ts=4 sts=4 sw=4 expandtab
 
 " Spell check for git commits
 au FileType gitcommit setlocal spell
+
+" JavaScript and JSX
+au FileType javascript setlocal et ts=2 sw=2
+au FileType vue setlocal et ts=2 sw=2
 
 
 
@@ -241,6 +251,11 @@ nmap <leader>w :w!<CR>
 
 " Center screen
 nnoremap <space> zz
+
+nnoremap <leader>s :sort<CR>
+
+" Sanely close current buffer
+nnoremap <silent> <leader>q :Sayonara<CR>
 
 " Toggle spelling mistake highlight
 nnoremap <F6> :setlocal spell! spell?<CR>
