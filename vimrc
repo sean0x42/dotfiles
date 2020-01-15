@@ -14,7 +14,8 @@ Plug 'mhinz/vim-sayonara'                 " Sane buffer and window deletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Conquer of Completion
 Plug 'pangloss/vim-javascript'            " Improve JavaScript indent and syntax
 Plug 'plasticboy/vim-markdown'            " Improved Markdown support
-Plug 'prettier/vim-prettier'              " Clean JavaScript code
+Plug 'prettier/vim-prettier',             " Clean JavaScript code
+    \ { 'do': 'yarn install' }
 Plug 'rust-lang/rust.vim'                 " Syntax highlighting, formatting etc. for Rust
 Plug 'scrooloose/nerdtree'                " Add a file browser to the side of the editor
 Plug 'tpope/vim-commentary'               " Comment out selection
@@ -153,8 +154,8 @@ augroup filetypedetect
 augroup END
 
 au BufNewFile,BufRead *.vim setlocal noet ts=4 sw=4 sts=4
-au BufNewFile,BufRead *.md setlocal spell et ts=4 sw=4 sts=4
-au BufNewFile,BufRead *yml,*.yaml setlocal expandtab ts-2 sw=2
+au BufNewFile,BufRead *.md setlocal spell et ts=4 sw=4 sts=4 cole=0
+au BufNewFile,BufRead *yml,*.yaml setlocal expandtab ts=2 sw=2
 au BufNewFile,BufRead *.json setlocal expandtab ts=2 sw=2
 
 au FileType nginx setlocal noet ts=4 sw=4 sts=4
@@ -194,16 +195,19 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 
 " vim-javascript
 " --------------
-let g:javascript_plugin_jsdoc = 1   " Enable syntax highlighting in JSDocs
+let g:javascript_plugin_jsdoc = 1 " Enable syntax highlighting in JSDocs
 
 " vim-markdown
 " ------------
-let g:vim_markdown_frontmatter=1    " Enable YAML frontmatter
-let g:vim_markdown_strikethrough=1  " Enable strikethrough
+let g:vim_markdown_frontmatter=1      " Enable YAML frontmatter
+let g:vim_markdown_strikethrough=1    " Enable strikethrough
+let g:vim_markdown_conceal=0          " Disable concealment
+let g:vim_markdown_conceal_code_blocks=0
+let g:vim_markdown_folding_disabled=1 " Disable automatic folding, which causes issues with Prettier's autoformat
 
 " rust.vim
 " --------
-let g:rustfmt_autosave = 1          " Run rustfmt when saving
+let g:rustfmt_autosave = 1 " Run rustfmt when saving
 
 " nerdtree
 " --------
