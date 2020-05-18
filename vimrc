@@ -6,7 +6,7 @@ call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'MaxMEllon/vim-jsx-pretty'           " Improve JSX syntax highlighting
 Plug 'Yggdroot/indentLine'                " Adds an indent line
-Plug 'ayu-theme/ayu-vim'                  " ayu colour scheme
+Plug 'sonph/onehalf', { 'rtp': 'vim/' }
 Plug 'cespare/vim-toml'                   " Add TOML support
 Plug 'ctrlpvim/ctrlp.vim'                 " Adds Ctrl P fuzzy file finding
 Plug 'elzr/vim-json'                      " Add JSON support
@@ -20,7 +20,6 @@ Plug 'rust-lang/rust.vim'                 " Syntax highlighting, formatting etc.
 Plug 'scrooloose/nerdtree'                " Add a file browser to the side of the editor
 Plug 'tpope/vim-commentary'               " Comment out selection
 Plug 'vim-airline/vim-airline'            " Airline UI
-Plug 'vim-airline/vim-airline-themes'     " Themes for Airline
 
 call plug#end()
 
@@ -66,8 +65,9 @@ set signcolumn=yes              " Always show sign column, for COC
 " Theme & Colours
 " ---------------
 set termguicolors
-let ayucolor="mirage"
-colorscheme ayu
+syntax on
+set t_Co=256
+colorscheme onehalfdark
 
 " Line Wrapping
 " -------------
@@ -217,7 +217,7 @@ au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTre
 " vim-airline
 " -----------
 let g:airline#extensions#tabline#enabled=1 " Enable better tabs
-let g:airline_theme='wombat'
+let g:airline_theme='onehalfdark'
 
 " vim-json
 " --------
