@@ -1,40 +1,62 @@
 " =================================
-" PLUGINS
+"             PLUGINS
 " =================================
-
+" {{{
 call plug#begin(stdpath('data') . '/plugged')
 
-Plug 'MaxMEllon/vim-jsx-pretty'           " Improve JSX syntax highlighting
-Plug 'Yggdroot/indentLine'                " Adds an indent line
-Plug 'sonph/onehalf', { 'rtp': 'vim/' }
-Plug 'cespare/vim-toml'                   " Add TOML support
-Plug 'ctrlpvim/ctrlp.vim'                 " Adds Ctrl P fuzzy file finding
-Plug 'elzr/vim-json'                      " Add JSON support
+" COC {{{
+" -------
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" }}}
+
+" Interface and Functionality {{{
+" -------------------------------
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mhinz/vim-sayonara'                 " Sane buffer and window deletion
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " Conquer of Completion
-Plug 'pangloss/vim-javascript'            " Improve JavaScript indent and syntax
-Plug 'plasticboy/vim-markdown'            " Improved Markdown support
-Plug 'prettier/vim-prettier',             " Clean JavaScript code
-    \ { 'do': 'yarn install' }
-Plug 'rust-lang/rust.vim'                 " Syntax highlighting, formatting etc. for Rust
+Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree'                " Add a file browser to the side of the editor
 Plug 'tpope/vim-commentary'               " Comment out selection
-Plug 'vim-airline/vim-airline'            " Airline UI
+Plug 'vim-airline/vim-airline'
+" }}}
+
+" Theming {{{
+" -----------
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ayu-theme/ayu-vim'
+" }}}
+
+" JSON and JavaScript {{{
+" -----------------------
+Plug 'pangloss/vim-javascript'    " JS syntax highlighting
+Plug 'leafgarland/typescript-vim' " Typescript syntax highlighting
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'elzr/vim-json'                      " Add JSON support
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+" }}}
+
+" Misc {{{
+" --------
+Plug 'plasticboy/vim-markdown'            " Improved Markdown support
+Plug 'rust-lang/rust.vim'                 " Syntax highlighting, formatting etc. for Rust
+Plug 'cespare/vim-toml'                   " Add TOML support
+" }}}
 
 call plug#end()
-
+" }}}
 
 
 " =================================
-" SETTINGS
+"             SETTINGS
 " =================================
+" {{{
 
 set nocompatible                " Required for COC
 
-" Generic
-" -------
+" Generic {{{
+" -----------
 set number                      " Show line numbers
-set numberwidth=5               " 5 spaces for line numbers
+set numberwidth=4               " 5 spaces for line numbers
 set backspace=indent,eol,start  " Make backspace key a bit more powerful
 set showcmd                     " Show command as I'm typing
 set noshowmode                  " Mode will be shown by airline
@@ -61,23 +83,25 @@ set cmdheight=2                 " For COC
 set updatetime=300              " For COC
 set shortmess+=c                " For COC
 set signcolumn=yes              " Always show sign column, for COC
+" }}}
 
-" Theme & Colours
-" ---------------
+" Theme & Colours {{{
+" -------------------
 set termguicolors
-syntax on
-set t_Co=256
-colorscheme onehalfdark
+let ayucolor="mirage"
+colorscheme ayu
+" }}}
 
-" Line Wrapping
-" -------------
+" Line Wrapping {{{
+" -----------------
 set wrap
 set textwidth=80
 set formatoptions=qrn1
 set colorcolumn=81
+" }}}
 
-" Indentation
-" -----------
+" Indentation {{{
+" ---------------
 filetype off
 filetype plugin indent on       " Enable indent according to file type
 set autoindent                  " Infer indent based on context
@@ -85,37 +109,43 @@ set complete-=1
 set smarttab                    " Infer tab expansion? 
 set expandtab                   " Expand tabs into spaces
 set tabstop=4                   " Default to 4 spaces per tab...
+set softtabstop=4
 set shiftwidth=4                " ...to be configured per language later
 set shiftround                  " Round '<' and '>' to multiples of shiftwidth
+" }}}
 
-" Syntax Highlighting
-" -------------------
+" Syntax Highlighting {{{
+" -----------------------
 syntax sync minlines=256
 set synmaxcol=300
+" }}}
 
-" Read/Write
-" ----------
+" Read/Write {{{
+" --------------
 set encoding=utf-8
 set autowrite                   " Automatically write before running commands 
 set autoread                    " Reread changed files automatically
 au FocusLost * :wa              " Save file when focus is lost
 set fileformats=unix,dos,mac    " Set sane file format order
+" }}}
 
-" Search
-" ------
+" Search {{{
+" ----------
 set incsearch                   " Show search matches while typing
 set hlsearch                    " Highlight found searches
 set ignorecase                  " Case insensitive searching
 set smartcase                   " ... but not when search contains upper case chars
+" }}}
 
-" Performance
-" -----------
+" Performance {{{
+" ---------------
 set lazyredraw                  " Wait to redraw
 set nocursorcolumn              " Speed up syntax highlighting
 set nocursorline
+" }}}
 
-" Wild Menu
-" ---------
+" Wild Menu {{{
+" -------------
 set wildmenu
 set wildmode=list:full
 
@@ -130,9 +160,10 @@ set wildignore+=*.luac                           " Lua byte code
 set wildignore+=migrations                       " Django migrations
 set wildignore+=*.pyc                            " Python byte code
 set wildignore+=*.orig                           " Merge resolution filesode=list:full
+" }}}
 
-" Mouse
-" -----
+" Mouse {{{
+" ---------
 if has('mouse')
   set mouse=a
 endif
@@ -141,97 +172,137 @@ let s:uname = system("echo -n \"$(uname)\"")
 if !v:shell_error && s:uname == "Linux" && !has('nvim')
   set ttymouse=xterm
 endif
+" }}}
 
+" }}}
 
 
 " =================================
-" FILE CONFIG
+"           FILE CONFIG
 " =================================
+" {{{
 
+" NGINX {{{
+" ---------
+au FileType nginx setlocal noet
 augroup filetypedetect
   au BufNewFile,BufRead .nginx.conf*,nginx.conf* setf nginx
-  au BufNewFile,BufRead *.bailey setf cd19
 augroup END
+" }}}
 
-au BufNewFile,BufRead *.vim setlocal noet ts=4 sw=4 sts=4
-au BufNewFile,BufRead *.md setlocal spell et ts=4 sw=4 sts=4 cole=0
-au BufNewFile,BufRead *yml,*.yaml setlocal expandtab ts=2 sw=2
-au BufNewFile,BufRead *.json setlocal expandtab ts=2 sw=2
+" Vim {{{
+" -------
+au BufNewFile,BufRead *.vim setlocal noet ts=2 sw=2 sts=2
+au FileType vim setlocal foldmethod=marker
+" }}}
 
-au FileType nginx setlocal noet ts=4 sw=4 sts=4
-au FileType cd19 setlocal et ts=2 sw=2 sts=2
+" Markdown {{{
+" ------------
+au BufNewFile,BufRead *.md setlocal spell ts=2 sts=2 sw=2 cole=0
+" }}}
 
-au FileType fstab,systemd set noexpandtab
-au FileType gitconfig,sh,toml set noexpandtab
+" YAML {{{
+" --------
+au BufNewFile,BufRead *yml,*.yaml setlocal ts=2 sw=2 sts=2
+" }}}
 
-" JSON Comments
+au FileType fstab,systemd,gitconfig,sh,toml set noexpandtab
+
+" JSON {{{
+" --------
 au FileType json syntax match Comment +\/\/.\+$+
+au BufNewFile,BufRead *.json setlocal ts=2 sw=2
+" }}}
 
-" Python indent
-au BufNewFile,BufRead *.py setlocal ts=4 sts=4 sw=4 expandtab
-
-" Spell check for git commits
+" Git Commmits {{{
+" ----------------
 au FileType gitcommit setlocal spell
+" }}}
 
-" JavaScript and JSX
-au FileType javascript setlocal et ts=2 sw=2
-au FileType vue setlocal et ts=2 sw=2
+" JavaScript and JSX {{{
+" ----------------------
+au FileType javascript,typescript,vue setlocal ts=2 sw=2 sts=2
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+" }}}
 
+" }}}
 
 
 " =================================
-" PLUGIN CONFIG
+"          PLUGIN CONFIG
 " =================================
+" {{{
 
-" indentLine
-" ----------
+" COC {{{
+" -------
+let g:coc_global_extensions = [
+  \ 'coc-tsserver',
+  \ ]
+" }}}
+
+" IndentLine {{{
+" --------------
+let g:indentLine_char = '⋮'
+let g:indentLine_first_char = '⋮'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_setColors = 0
+" }}}
 
-" ctrlp.vim
-" ---------
-" Ignore files defined in .gitignore
+" ctrl+p {{{
+" -------------
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" }}}
 
-" vim-javascript
-" --------------
+" vim-javascript {{{
+" ------------------
 let g:javascript_plugin_jsdoc = 1 " Enable syntax highlighting in JSDocs
+" }}}
 
-" vim-markdown
-" ------------
+" vim-markdown {{{
+" ----------------
 let g:vim_markdown_frontmatter=1      " Enable YAML frontmatter
 let g:vim_markdown_strikethrough=1    " Enable strikethrough
 let g:vim_markdown_conceal=0          " Disable concealment
 let g:vim_markdown_conceal_code_blocks=0
 let g:vim_markdown_folding_disabled=1 " Disable automatic folding, which causes issues with Prettier's autoformat
+" }}}
 
-" rust.vim
-" --------
-let g:rustfmt_autosave = 1 " Run rustfmt when saving
+" rust.vim {{{
+" ------------
+let g:rustfmt_autosave = 1
+" }}}
 
-" nerdtree
-" --------
+" nerdtree {{{
+" ------------
 " Automatically close Vim if only NERD Tree tab remains
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" }}}
 
-" vim-airline
-" -----------
+" vim-airline {{{
+" ---------------
 let g:airline#extensions#tabline#enabled=1 " Enable better tabs
-let g:airline_theme='onehalfdark'
+let g:airline_theme='ayu_mirage'
+" }}}
 
-" vim-json
-" --------
-let g:vim_json_syntax_conceal=0     " Disable syntax concealment
+" vim-json {{{
+" ------------
+let g:vim_json_syntax_conceal=0
+" }}}
 
+" }}}
 
 
 " =================================
-" KEYBINDS
+"             KEYBINDS
 " =================================
+" {{{
 
-" Set leader
+" Leader {{{
+" ----------
 let mapleader = ','
 let g:mapleader = ','
+" }}}
 
 " Ctrl U in insert mode deletes a lot. Use Ctrl G u to first break undo,
 " so that you can undo Ctrl U after inserting a line break.
@@ -280,12 +351,15 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
+" COC {{{
+" -------
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -390,15 +464,19 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+" COC }}}
+
+" }}}
 
 
 " ================================
-" COMMANDS
+"             COMMANDS
 " ================================
-
+" {{{
 " Diff against original file.
 " i.e. See changes
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
               \ | wincmd p | diffthis
 endif
+" }}}
