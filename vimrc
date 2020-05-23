@@ -4,19 +4,17 @@
 " {{{
 call plug#begin(stdpath('data') . '/plugged')
 
-" COC {{{
-" -------
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" }}}
-
-" Interface and Functionality {{{
-" -------------------------------
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mhinz/vim-sayonara'                 " Sane buffer and window deletion
-Plug 'Yggdroot/indentLine'
-Plug 'scrooloose/nerdtree'                " Add a file browser to the side of the editor
-Plug 'tpope/vim-commentary'               " Comment out selection
+" Functionality {{{
+" -----------------
+Plug 'neoclide/coc.nvim', {
+    \ 'branch': 'release'}     " Conqueror of Completion
+Plug 'ctrlpvim/ctrlp.vim'      " Ctrl + P
+Plug 'mhinz/vim-sayonara'      " Sane buffer and window deletion
+Plug 'Yggdroot/indentLine'     " Indentation line
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
+Plug 'mattn/emmet-vim'
 " }}}
 
 " Theming {{{
@@ -31,15 +29,15 @@ Plug 'pangloss/vim-javascript'    " JS syntax highlighting
 Plug 'leafgarland/typescript-vim' " Typescript syntax highlighting
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'elzr/vim-json'                      " Add JSON support
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 " }}}
 
-" Misc {{{
-" --------
-Plug 'plasticboy/vim-markdown'            " Improved Markdown support
-Plug 'rust-lang/rust.vim'                 " Syntax highlighting, formatting etc. for Rust
-Plug 'cespare/vim-toml'                   " Add TOML support
+" Misc Language Support {{{
+" -------------------------
+Plug 'plasticboy/vim-markdown'
+Plug 'rust-lang/rust.vim'
+Plug 'elzr/vim-json'
+Plug 'cespare/vim-toml'
 " }}}
 
 call plug#end()
@@ -203,7 +201,7 @@ au BufNewFile,BufRead *.md setlocal spell ts=2 sts=2 sw=2 cole=0
 
 " YAML {{{
 " --------
-au BufNewFile,BufRead *yml,*.yaml setlocal ts=2 sw=2 sts=2
+au BufNewFile,BufRead *yml,*.yaml setlocal ts=2 sw=2 sts=2 spell
 " }}}
 
 au FileType fstab,systemd,gitconfig setlocal noexpandtab
@@ -219,11 +217,21 @@ au BufNewFile,BufRead *.json setlocal ts=2 sw=2
 au FileType gitcommit setlocal spell
 " }}}
 
+" HTML {{{
+" --------
+au BufNewFile,BufRead *.html,*.liquid setlocal ts=2 sts=2 sw=2
+" }}}
+
 " JavaScript and JSX {{{
 " ----------------------
 au FileType javascript,typescript,vue setlocal ts=2 sw=2 sts=2
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+au BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+au BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+" }}}
+
+" CSS, Sass, Less {{{
+" -------------------
+au BufNewFile,BufRead *.css,*.css.liquid setlocal ts=2 sts=2 sw=2
 " }}}
 
 " }}}
@@ -243,8 +251,8 @@ let g:coc_global_extensions = [
 
 " IndentLine {{{
 " --------------
-let g:indentLine_char = '⋮'
-let g:indentLine_first_char = '⋮'
+let g:indentLine_char = '⎸'
+let g:indentLine_first_char = '⎸'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_setColors = 0
 " }}}
