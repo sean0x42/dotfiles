@@ -206,7 +206,7 @@ au BufNewFile,BufRead *.md setlocal spell ts=2 sts=2 sw=2 cole=0
 au BufNewFile,BufRead *yml,*.yaml setlocal ts=2 sw=2 sts=2
 " }}}
 
-au FileType fstab,systemd,gitconfig,sh,toml set noexpandtab
+au FileType fstab,systemd,gitconfig setlocal noexpandtab
 
 " JSON {{{
 " --------
