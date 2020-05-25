@@ -267,6 +267,12 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 let g:javascript_plugin_jsdoc = 1 " Enable syntax highlighting in JSDocs
 " }}}
 
+" Prettier {{{
+" ------------
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#autoformat_config_present = 1
+" }}}
+
 " vim-markdown {{{
 " ----------------
 let g:vim_markdown_frontmatter=1      " Enable YAML frontmatter
