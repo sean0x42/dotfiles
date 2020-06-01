@@ -6,8 +6,7 @@ call plug#begin(stdpath('data') . '/plugged')
 
 " Functionality {{{
 " -----------------
-Plug 'neoclide/coc.nvim', {
-    \ 'branch': 'release'}     " Conqueror of Completion
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'ctrlpvim/ctrlp.vim'      " Ctrl + P
 Plug 'mhinz/vim-sayonara'      " Sane buffer and window deletion
 Plug 'Yggdroot/indentLine'     " Indentation line
@@ -15,6 +14,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
 Plug 'mattn/emmet-vim'
+Plug 'airblade/vim-gitgutter'
 " }}}
 
 " Theming {{{
@@ -204,6 +204,11 @@ au BufNewFile,BufRead *.md setlocal spell ts=2 sts=2 sw=2 cole=0
 au BufNewFile,BufRead *yml,*.yaml setlocal ts=2 sw=2 sts=2 spell
 " }}}
 
+" Shell {{{
+" ---------
+au FileType sh setlocal ts=2 sts=2 sw=2
+" }}}
+
 au FileType fstab,systemd,gitconfig setlocal noexpandtab
 
 " JSON {{{
@@ -318,13 +323,12 @@ let mapleader = ','
 let g:mapleader = ','
 " }}}
 
+" Generic {{{
+" -----------
+
 " Ctrl U in insert mode deletes a lot. Use Ctrl G u to first break undo,
 " so that you can undo Ctrl U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
-
-" Enable nerd tree
-map <C-n> :NERDTreeToggle<CR>
-map <leader>n :NERDTreeToggle<CR>
 
 " Remove search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -364,6 +368,14 @@ nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
+
+" }}}
+
+" NERDTree {{{
+" ------------
+map <C-n> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
+" }}}
 
 " COC {{{
 " -------
