@@ -6,7 +6,10 @@ call plug#begin(stdpath('data') . '/plugged')
 
 " Functionality {{{
 " -----------------
+
+" Conquer of Completion
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+
 Plug 'ctrlpvim/ctrlp.vim'      " Ctrl + P
 Plug 'mhinz/vim-sayonara'      " Sane buffer and window deletion
 Plug 'Yggdroot/indentLine'     " Indentation line
@@ -15,6 +18,9 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
+
+" Trialing this plugin. A project at nib uses .editorconfig files
+Plug 'editorconfig/editorconfig-vim'
 " }}}
 
 " Theming {{{
