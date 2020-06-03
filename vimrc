@@ -38,6 +38,12 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 " }}}
 
+" Markdown and Writing {{{
+" ------------------------
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+" }}}
+
 " Misc Language Support {{{
 " -------------------------
 Plug 'plasticboy/vim-markdown'
@@ -308,6 +314,17 @@ au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTre
 " ---------------
 let g:airline#extensions#tabline#enabled=1 " Enable better tabs
 let g:airline_theme='ayu_mirage'
+" }}}
+
+" goyo.vim {{{
+" ------------
+let g:goyo_width=82
+" }}}
+
+" limelight.vim {{{
+" -----------------
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
 " }}}
 
 " vim-json {{{
