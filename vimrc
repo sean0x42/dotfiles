@@ -36,6 +36,7 @@ Plug 'leafgarland/typescript-vim' " Typescript syntax highlighting
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'jparise/vim-graphql'
 " }}}
 
 " Markdown and Writing {{{
