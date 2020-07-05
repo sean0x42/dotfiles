@@ -18,9 +18,7 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
-
-" Trialing this plugin. A project at nib uses .editorconfig files
-Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-fugitive'
 " }}}
 
 " Theming {{{
