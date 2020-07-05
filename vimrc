@@ -41,13 +41,14 @@ Plug 'jparise/vim-graphql'
 
 " Markdown and Writing {{{
 " ------------------------
+Plug 'plasticboy/vim-markdown'
+Plug 'jxnblk/vim-mdx-js'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 " }}}
 
 " Misc Language Support {{{
 " -------------------------
-Plug 'plasticboy/vim-markdown'
 Plug 'rust-lang/rust.vim'
 Plug 'elzr/vim-json'
 Plug 'cespare/vim-toml'
