@@ -50,6 +50,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'elzr/vim-json'
 Plug 'cespare/vim-toml'
+Plug 'ron-rs/ron.vim'
 " }}}
 
 call plug#end()
@@ -287,7 +288,6 @@ let g:javascript_plugin_jsdoc = 1 " Enable syntax highlighting in JSDocs
 " vim-prettier {{{
 " ------------
 let g:prettier#autoformat = 1
-let g:prettier#autoformat_require_pragma = 0
 " }}}
 
 " vim-markdown {{{
