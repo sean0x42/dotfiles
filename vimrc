@@ -306,6 +306,9 @@ let g:rustfmt_autosave = 1
 
 " nerdtree {{{
 " ------------
+" Show dotfiles
+let NERDTreeShowHidden=1
+
 " Automatically close Vim if only NERD Tree tab remains
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}}
