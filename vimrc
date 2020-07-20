@@ -219,7 +219,7 @@ au BufNewFile,BufRead *yml,*.yaml setlocal ts=2 sw=2 sts=2 spell
 
 " Shell {{{
 " ---------
-au FileType sh setlocal ts=2 sts=2 sw=2
+au FileType zsh,sh setlocal ts=2 sts=2 sw=2
 " }}}
 
 au FileType fstab,systemd,gitconfig setlocal noexpandtab
