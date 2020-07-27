@@ -14,11 +14,12 @@ Plug 'ctrlpvim/ctrlp.vim'      " Ctrl + P
 Plug 'mhinz/vim-sayonara'      " Sane buffer and window deletion
 Plug 'Yggdroot/indentLine'     " Indentation line
 Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 " }}}
 
 " Theming {{{
