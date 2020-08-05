@@ -389,13 +389,16 @@ nnoremap N Nzzzv
 cmap w!! w !sudo tee > /dev/null %
 
 " Switch between last two files
-nnoremap <leader><leader> <C-^>
+" nnoremap <leader><leader> <C-^>
 
 " Get off my lawn
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
+
+nnoremap <leader>j :cnext<CR>
+nnoremap <leader>k :cprevious<CR>
 
 " }}}
 
