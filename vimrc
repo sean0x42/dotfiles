@@ -51,6 +51,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'rust-lang/rust.vim'
 Plug 'elzr/vim-json'
 Plug 'cespare/vim-toml'
+Plug 'ron-rs/ron.vim'
 " }}}
 
 call plug#end()
