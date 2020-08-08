@@ -14,13 +14,12 @@ Plug 'ctrlpvim/ctrlp.vim'      " Ctrl + P
 Plug 'mhinz/vim-sayonara'      " Sane buffer and window deletion
 Plug 'Yggdroot/indentLine'     " Indentation line
 Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
-
-" Trialing this plugin. A project at nib uses .editorconfig files
-Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 " }}}
 
 " Theming {{{
@@ -41,13 +40,15 @@ Plug 'jparise/vim-graphql'
 
 " Markdown and Writing {{{
 " ------------------------
+Plug 'plasticboy/vim-markdown'
+Plug 'jxnblk/vim-mdx-js'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 " }}}
 
 " Misc Language Support {{{
 " -------------------------
-Plug 'plasticboy/vim-markdown'
 Plug 'rust-lang/rust.vim'
 Plug 'elzr/vim-json'
 Plug 'cespare/vim-toml'
@@ -220,7 +221,7 @@ au BufNewFile,BufRead *yml,*.yaml setlocal ts=2 sw=2 sts=2 spell
 
 " Shell {{{
 " ---------
-au FileType sh setlocal ts=2 sts=2 sw=2
+au FileType zsh,sh setlocal ts=2 sts=2 sw=2
 " }}}
 
 au FileType fstab,systemd,gitconfig setlocal noexpandtab
@@ -289,7 +290,6 @@ let g:javascript_plugin_jsdoc = 1 " Enable syntax highlighting in JSDocs
 " vim-prettier {{{
 " ------------
 let g:prettier#autoformat = 1
-let g:prettier#autoformat_require_pragma = 0
 " }}}
 
 " vim-markdown {{{
@@ -308,6 +308,9 @@ let g:rustfmt_autosave = 1
 
 " nerdtree {{{
 " ------------
+" Show dotfiles
+let NERDTreeShowHidden=1
+
 " Automatically close Vim if only NERD Tree tab remains
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}}
@@ -386,13 +389,16 @@ nnoremap N Nzzzv
 cmap w!! w !sudo tee > /dev/null %
 
 " Switch between last two files
-nnoremap <leader><leader> <C-^>
+" nnoremap <leader><leader> <C-^>
 
 " Get off my lawn
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
+
+nnoremap <leader>j :cnext<CR>
+nnoremap <leader>k :cprevious<CR>
 
 " }}}
 
