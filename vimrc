@@ -121,9 +121,9 @@ set autoindent                  " Infer indent based on context
 set complete-=1
 set smarttab                    " Infer tab expansion? 
 set expandtab                   " Expand tabs into spaces
-set tabstop=4                   " Default to 4 spaces per tab...
-set softtabstop=4
-set shiftwidth=4                " ...to be configured per language later
+set tabstop=2                   " Default to 2 spaces per tab...
+set softtabstop=2
+set shiftwidth=2                " ...to be configured per language later
 set shiftround                  " Round '<' and '>' to multiples of shiftwidth
 " }}}
 
@@ -205,23 +205,18 @@ augroup END
 
 " Vim {{{
 " -------
-au BufNewFile,BufRead *.vim setlocal noet ts=2 sw=2 sts=2
+au BufNewFile,BufRead *.vim setlocal noexpandtab
 au FileType vim setlocal foldmethod=marker
 " }}}
 
 " Markdown {{{
 " ------------
-au BufNewFile,BufRead *.md setlocal spell ts=2 sts=2 sw=2 cole=0
+au BufNewFile,BufRead *.md setlocal spell cole=0
 " }}}
 
 " YAML {{{
 " --------
-au BufNewFile,BufRead *yml,*.yaml setlocal ts=2 sw=2 sts=2 spell
-" }}}
-
-" Shell {{{
-" ---------
-au FileType zsh,sh setlocal ts=2 sts=2 sw=2
+au BufNewFile,BufRead *yml,*.yaml setlocal spell
 " }}}
 
 au FileType fstab,systemd,gitconfig setlocal noexpandtab
@@ -229,7 +224,6 @@ au FileType fstab,systemd,gitconfig setlocal noexpandtab
 " JSON {{{
 " --------
 au FileType json syntax match Comment +\/\/.\+$+
-au BufNewFile,BufRead *.json setlocal ts=2 sw=2
 " }}}
 
 " Git Commmits {{{
@@ -237,21 +231,15 @@ au BufNewFile,BufRead *.json setlocal ts=2 sw=2
 au FileType gitcommit setlocal spell
 " }}}
 
-" HTML {{{
-" --------
-au BufNewFile,BufRead *.html,*.liquid setlocal ts=2 sts=2 sw=2
-" }}}
-
 " JavaScript and JSX {{{
 " ----------------------
-au FileType javascript,typescript,vue setlocal ts=2 sw=2 sts=2
 au BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 au BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 " }}}
 
-" CSS, Sass, Less {{{
-" -------------------
-au BufNewFile,BufRead *.css,*.css.liquid setlocal ts=2 sts=2 sw=2
+" Rust {{{
+" --------
+au FileType rust setlocal ts=4 sts=4 sw=4
 " }}}
 
 " }}}
