@@ -1,43 +1,43 @@
 source $DOTFILES/zsh/aliases.zsh
 
+# https://gist.github.com/QinMing/364774610afc0e06cc223b467abe83c0#file-zshrc-L15-L37
+lazy_load() {
+  echo "Lazy loading $2 ..."
+
+  local -a names
+  if [[ -n "$ZSH_VERSION" ]]; then
+    names=("${(@s: :)${1}}")
+  else
+    names=($1)
+  fi
+
+  unalias "${names[@]}"
+  source $2
+  shift 2
+  $*
+}
+
+group_lazy_load() {
+  local script
+  script=$1
+  shift 1
+  for cmd in "$@"; do
+    alias $cmd="lazy_load \"$*\" $script $cmd"
+  done
+}
+
 # NVM {{{
 # -------
 
 echo 'Loading nvm...'
-
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Automatically adopt node version if .nvmrc is defined
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+group_lazy_load $NVM_DIR/nvm.sh nvm node npm yarn jest webpack prettier
 
 # }}}
 
 # Netlify {{{
 # -----------
 
-echo 'Loading Netlify...'
+echo 'Loading netlify...'
 if [ -f "$HOME/.netlify/helper/path.zsh.inc" ]
 then
   source "$HOME/.netlify/helper/path.zsh.inc"
@@ -45,5 +45,5 @@ fi
 
 # }}}
 
-echo 'Loading Starship...'
+echo 'Loading starship...'
 eval "$(starship init zsh)"
