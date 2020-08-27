@@ -242,6 +242,11 @@ au BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 au FileType rust setlocal ts=4 sts=4 sw=4
 " }}}
 
+" ZSH {{{
+" -------
+au FileType zsh setlocal foldmethod=marker
+" }}}
+
 " }}}
 
 

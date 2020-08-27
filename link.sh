@@ -11,5 +11,7 @@ link vimrc ~/.config/nvim/init.vim
 link coc-settings.json ~/.config/nvim/coc-settings.json
 link tmux.conf ~/.tmux.conf
 link starship.toml ~/.config/starship.toml
+link zsh/zshenv ~/.zshenv
+link zsh/zshrc ~/.zshrc
 
 echo Done! 🎉
