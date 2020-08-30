@@ -38,3 +38,8 @@ if [ "$(command -v bat)" ]; then
   alias cat="bat --theme=OneHalfDark"
 fi
 # }}}
+
+# fd (drop-in alternative for find) {{{
+# -------------------------------------
+alias find="fd"
+# }}}
