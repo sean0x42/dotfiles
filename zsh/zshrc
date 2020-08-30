@@ -1,4 +1,5 @@
-source $DOTFILES/zsh/aliases.zsh
+# Scripts {{{
+# -----------
 
 # https://gist.github.com/QinMing/364774610afc0e06cc223b467abe83c0#file-zshrc-L15-L37
 lazy_load() {
@@ -26,24 +27,40 @@ group_lazy_load() {
   done
 }
 
+# }}}
+
+# Oh My Zsh {{{
+# -------------
+
+# Would really like to get rid of this at some point to speed up start up time.
+# Super valuable for history traversal and git plugin
+echo 'Loading Oh My Zsh...'
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+
+# }}}
+
 # NVM {{{
 # -------
 
-echo 'Loading nvm...'
-group_lazy_load $NVM_DIR/nvm.sh nvm node npm yarn jest webpack prettier
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  echo 'Loading nvm...'
+  group_lazy_load $NVM_DIR/nvm.sh nvm node npm yarn jest webpack prettier
+fi
 
 # }}}
 
 # Netlify {{{
 # -----------
 
-echo 'Loading netlify...'
-if [ -f "$HOME/.netlify/helper/path.zsh.inc" ]
-then
+if [ -f "$HOME/.netlify/helper/path.zsh.inc" ]; then
+  echo 'Loading netlify...'
   source "$HOME/.netlify/helper/path.zsh.inc"
 fi
 
 # }}}
+
+source $DOTFILES/zsh/aliases.zsh
 
 echo 'Loading starship...'
 eval "$(starship init zsh)"
