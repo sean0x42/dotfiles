@@ -45,13 +45,13 @@ source $ZSH/oh-my-zsh.sh
 
 if [ -s "$NVM_DIR/nvm.sh" ]; then
   echo 'Loading nvm... (lazy)'
-  group_lazy_load $NVM_DIR/nvm.sh nvm node npm yarn jest webpack prettier gatsby netlify
+  group_lazy_load $NVM_DIR/nvm.sh nvm node npm yarn jest webpack prettier gatsby netlify blitz
 fi
 
 # }}}
 
-# Jabba
-# -----
+# Jabba {{{
+# ---------
 
 if [ -s "$HOME/.jabba/jabba.sh" ]; then
   echo 'Loading jabba... (lazy)'

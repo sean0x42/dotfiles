@@ -36,6 +36,7 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'jparise/vim-graphql'
+Plug 'evanleck/vim-svelte', { 'branch': 'main' }
 " }}}
 
 " Markdown and Writing {{{
@@ -328,6 +329,11 @@ autocmd! User GoyoLeave Limelight!
 " vim-json {{{
 " ------------
 let g:vim_json_syntax_conceal=0
+" }}}
+
+" vim-svelte {{{
+" --------------
+let g:svelte_preprocessors = ['typescript']
 " }}}
 
 " }}}
