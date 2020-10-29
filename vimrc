@@ -20,6 +20,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'christoomey/vim-tmux-navigator'
 " }}}
 
 " Theming {{{
