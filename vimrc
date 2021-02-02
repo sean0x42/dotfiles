@@ -27,6 +27,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " -----------
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ayu-theme/ayu-vim'
+Plug 'norcalli/nvim-colorizer.lua'
 " }}}
 
 " JSON and JavaScript {{{
@@ -337,6 +338,16 @@ let g:vim_json_syntax_conceal=0
 let g:svelte_preprocessors = ['typescript']
 " }}}
 
+" nvim-colorizer {{{
+" ------------------
+lua << EOF
+require 'colorizer'.setup {
+  '*'; -- Highlight all files
+  css = { css = true; }; -- Enable additional CSS highlighting
+}
+EOF
+" }}}
+
 " }}}
 
 
@@ -399,6 +410,8 @@ nnoremap <Down> :echoe "Use j"<CR>
 
 nnoremap <leader>j :cnext<CR>
 nnoremap <leader>k :cprevious<CR>
+
+nnoremap <leader>y :%y+<CR>
 
 " }}}
 
