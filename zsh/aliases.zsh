@@ -12,6 +12,7 @@ alias gd="git diff"
 alias gl="git log"
 alias gp="git push"
 alias gs="git status"
+alias git-drop-merged="git branch --merged | egrep -v \"(^\*|master|main|dev)\" | xargs git branch -d"
 # }}}
 
 # NPM/Yarn {{{
