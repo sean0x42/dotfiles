@@ -50,16 +50,6 @@ fi
 
 # }}}
 
-# Jabba {{{
-# ---------
-
-if [ -s "$HOME/.jabba/jabba.sh" ]; then
-  echo 'Loading jabba... (lazy)'
-  group_lazy_load $HOME/.jabba/jabba.sh jabba javac java
-fi
-
-# }}}
-
 # Netlify {{{
 # -----------
 
@@ -74,3 +64,5 @@ source $DOTFILES/zsh/aliases.zsh
 
 echo 'Loading starship...'
 eval "$(starship init zsh)"
+
+cd ~/workspace
