@@ -23,4 +23,6 @@ export NVM_DIR=$HOME/.nvm
 # --------
 export PATH="$PATH:$HOME/.local/share/rqp/bin"  # 
 export PATH="$PATH:$HOME/.rvm/bin"              # RVM
+export PATH="$PATH:/usr/local/sbin"             # sbin (for homebrew casks)
+export PATH="$HOME/.emacs.d/bin:$PATH"          # doom
 # }}}

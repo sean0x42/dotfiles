@@ -64,5 +64,3 @@ source $DOTFILES/zsh/aliases.zsh
 
 echo 'Loading starship...'
 eval "$(starship init zsh)"
-
-cd ~/workspace
