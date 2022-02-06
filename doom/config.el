@@ -79,3 +79,11 @@
 (setq typescript-indent-level 2)
 (setq js-indent-level 2)
 (setq standard-indent 2)
+
+;; Enable yas snippet expansion globally. Especially important for go lsp
+(yas-global-mode)
+
+;; Prettier
+(require 'prettier-js)
+(add-hook 'js2-mode-hook 'prettier-js-mode)
+(add-hook 'web-mode-hook 'prettier-js-mode)

@@ -59,3 +59,9 @@
 (package! gitignore-mode
   :recipe (:host github :repo "magit/git-modes"
            :files ("gitignore-mode.el")))
+
+(package! prettier
+  :recipe (:host github
+           :repo "prettier/prettier-emacs"
+           :files ("prettier-js.el")
+           :branch "master"))
