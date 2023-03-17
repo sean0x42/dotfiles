@@ -21,7 +21,7 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "JetBrains Mono" :size 14))
+(setq doom-font (font-spec :family "JetBrains Mono" :size 13))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -54,7 +54,6 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(projectile-add-known-project "~/workspace/HabitTracker")
 (projectile-add-known-project "~/workspace/dotfiles")
 (projectile-add-known-project "~/workspace/fas/api")
 (projectile-add-known-project "~/workspace/fas/api-gateway")
@@ -63,14 +62,10 @@
 (projectile-add-known-project "~/workspace/gth/ducks")
 (projectile-add-known-project "~/workspace/gth/frontline")
 (projectile-add-known-project "~/workspace/gth/ghost")
-(projectile-add-known-project "~/workspace/koi")
-(projectile-add-known-project "~/workspace/koi-prototype-mk-ii")
 (projectile-add-known-project "~/workspace/mineshark")
-(projectile-add-known-project "~/workspace/ncmg.com.au")
-(projectile-add-known-project "~/workspace/raycast-scripts")
 (projectile-add-known-project "~/workspace/seanbailey.dev")
-(projectile-add-known-project "~/workspace/specialist-fuzzy-match")
-(projectile-add-known-project "~/workspace/specialist-spell-checker")
+(projectile-add-known-project "~/workspace/nodejs-snowflake-odbc-driver-docker")
+(projectile-add-known-project "~/workspace/tealium-universal-tag")
 
 ;; Disable smart parens
 (remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
@@ -79,6 +74,7 @@
 (setq typescript-indent-level 2)
 (setq js-indent-level 2)
 (setq standard-indent 2)
+(setq evil-shift-width 2)
 
 ;; Enable yas snippet expansion globally. Especially important for go lsp
 (yas-global-mode)
@@ -87,3 +83,29 @@
 (require 'prettier-js)
 (add-hook 'js2-mode-hook 'prettier-js-mode)
 (add-hook 'web-mode-hook 'prettier-js-mode)
+(add-hook 'ts-mode-hook 'prettier-js-mode)
+
+;; Use human readable Size column instead of original one
+(define-ibuffer-column size-h
+  (:name "Size" :inline t)
+  (cond
+   ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+   ((> (buffer-size) 100000) (format "%7.0fk" (/ (buffer-size) 1000.0)))
+   ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
+   (t (format "%8d" (buffer-size)))))
+
+;; Modify the default ibuffer-formats
+(setq ibuffer-formats
+  '((mark modified read-only " "
+    (name 18 18 :left :elide)
+    " "
+    (size-h 9 -1 :right)
+    " "
+    (mode 16 16 :left :elide)
+    " "
+    filename-and-process)))
+
+
+;; Markdown mode for mdx
+;; (require 'markdown-mode)
+;; (add-to-list 'auto-mode-alist '("\\.mdx\\'" . markdown-mode)
