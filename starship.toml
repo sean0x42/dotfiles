@@ -7,20 +7,5 @@ error_symbol = "[λ](bold red)"
 [git_branch]
 symbol = " "
 
-[java]
-symbol = " "
-
-[memory_usage]
-symbol = " "
-
 [nodejs]
 symbol = " "
-
-[package]
-symbol = " "
-
-[python]
-symbol = " "
-
-[ruby]
-symbol = " "

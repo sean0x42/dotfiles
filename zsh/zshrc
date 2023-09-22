@@ -1,71 +1,9 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-# Scripts {{{
-# -----------
-
-# https://gist.github.com/QinMing/364774610afc0e06cc223b467abe83c0#file-zshrc-L15-L37
-lazy_load() {
-  echo "Lazy loading $2 ..."
-
-  local -a names
-  if [[ -n "$ZSH_VERSION" ]]; then
-    names=("${(@s: :)${1}}")
-  else
-    names=($1)
-  fi
-
-  unalias "${names[@]}"
-  source $2
-  shift 2
-  $*
-}
-
-group_lazy_load() {
-  local script
-  script=$1
-  shift 1
-  for cmd in "$@"; do
-    alias $cmd="lazy_load \"$*\" $script $cmd"
-  done
-}
-
-# }}}
-
-# Oh My Zsh {{{
-# -------------
-
-# Would really like to get rid of this at some point to speed up start up time.
-# Super valuable for history traversal and git plugin
-echo 'Loading Oh My Zsh...'
-plugins=(git)
-source $ZSH/oh-my-zsh.sh
-
-# }}}
-
-# NVM {{{
-# -------
-
-if [ -s "$NVM_DIR/nvm.sh" ]; then
-  echo 'Loading nvm... (lazy)'
-  group_lazy_load $NVM_DIR/nvm.sh nvm node npm yarn jest webpack prettier gatsby netlify blitz
-fi
-
-# }}}
-
-# Netlify {{{
-# -----------
-
-if [ -f "$HOME/.netlify/helper/path.zsh.inc" ]; then
-  echo 'Loading netlify...'
-  source "$HOME/.netlify/helper/path.zsh.inc"
-fi
-
-# }}}
-
 source $DOTFILES/zsh/aliases.zsh
 
-echo 'Loading starship...'
-eval "$(starship init zsh)"
+echo "Loading nvm..."
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+echo "Loading starship..."
+eval "$(starship init zsh)"
