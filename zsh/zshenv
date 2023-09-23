@@ -13,7 +13,6 @@ export NVM_DIR="$HOME/.nvm"
 source "$HOME/.cargo/env"
 
 # Path
-export PATH="$HOME/.local/share/rqp/bin:$PATH"     # RQP
 export PATH="/usr/local/sbin:$PATH"                # sbin (for homebrew casks)
 export PATH="$HOME/.emacs.d/bin:$PATH"             # doom
 export PATH="$HOME/bin:$PATH"                      # user binaries
